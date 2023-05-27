@@ -179,3 +179,62 @@ async function initMap() {
 initMap();
 
 });
+
+
+// Navigation  
+
+// show and hide white navigation 
+$(function(){
+
+    // show and hide navigation on page load The reason we show the navigation on page load when user reached at the middle of the 
+    // page and it just refresh the page then the white navigation will dispear therefore we also add that fucntion when page load 
+    showhideNav();
+    $(window).scroll(function(){
+        // show and hide navigation when window scroll
+      showhideNav();
+    });
+
+
+    function showhideNav(){
+
+        if($(window).scrollTop() > 50){
+            // show white nav
+            $('nav').addClass('white-nav-top');
+
+            //  show dark logo
+            $('.navbar-brand img').attr('src' , "img/logo/logo-dark.png");
+
+            // Show back to top button
+            // FadeIn() method show the button
+            $('.btn-back-to-top').fadeIn();
+        }else{
+            // hide white nav
+            $('nav').removeClass('white-nav-top');
+            // show normal logo
+            $('.navbar-brand img').attr('src' , "img/logo/logo.png");
+             // Show back to top button
+             // fadeOUt() hide the button
+            $('.btn-back-to-top').fadeOut();
+        }
+    }
+
+    
+});
+
+// smoth scrolling
+$(function() {
+   
+    $('a.smoth-scroll').click(function(event){
+        event.preventDefault();
+
+        // get section Id by #about, #service , #team etc
+        let section_id  = $(this).attr('href');
+        
+        $("html, body").animate({
+            // offset() will get the current positon of object
+            scrollTop:$(section_id).offset().top - 64
+        },1250 , "easeInOutExpo" );
+    });
+    
+});
+
